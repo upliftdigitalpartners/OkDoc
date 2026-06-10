@@ -1,26 +1,109 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+/*
+ * OkDoc theme — calm, spacious, high-contrast.
+ * Light/dark via prefers-color-scheme; tokens exposed to Tailwind below.
+ * All color pairs meet WCAG AA on the surfaces they are used on.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f6f4ef;
+  --surface: #ffffff;
+  --ink: #1c2a36;
+  --ink-muted: #4e5f6d;
+  --line: #cdd5db;
+  --brand: #086275;
+  --brand-strong: #054956;
+  --brand-soft: #e2eff1;
+  --brand-contrast: #ffffff;
+  --ok: #1c6b34;
+  --ok-soft: #e3f2e7;
+  --warn: #7a5200;
+  --warn-soft: #f7ecd7;
+  --focus: #b45309;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #10181e;
+    --surface: #1a242c;
+    --ink: #e6edf3;
+    --ink-muted: #a8b7c2;
+    --line: #38474f;
+    --brand: #5ec8db;
+    --brand-strong: #8adbe9;
+    --brand-soft: #14333d;
+    --brand-contrast: #06222a;
+    --ok: #7fd494;
+    --ok-soft: #16301d;
+    --warn: #e3b341;
+    --warn-soft: #332a14;
+    --focus: #fbbf24;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-contrast: var(--brand-contrast);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-focus: var(--focus);
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+}
+
+/* Base font ≥18px: 112.5% of 16px. All rem-based Tailwind sizes scale up. */
+html {
+  font-size: 112.5%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* One loud, consistent focus style everywhere. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ink-muted: var(--ink);
+    --line: var(--ink);
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
 }
