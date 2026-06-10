@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:a11y": "playwright test"
+    "test:a11y": "playwright test",
+    "check:i18n": "node scripts/check-messages.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",

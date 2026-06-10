@@ -49,6 +49,23 @@ test('plan picker: payer → plan drill-down is keyboard-operable and axe-clean'
   expect(results.violations).toEqual([]);
 });
 
+test('RTL (Arabic): dir is set, axe-clean, no horizontal scroll', async ({
+  page,
+}) => {
+  await page.goto('/ar/results?county=kings&plan=H3359_021&specialty=cardiology');
+  await page.waitForLoadState('networkidle');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .analyze();
+  expect(results.violations).toEqual([]);
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  );
+  expect(overflow).toBeLessThanOrEqual(0);
+});
+
 test('200% zoom: results page has no horizontal scroll', async ({ page }) => {
   await page.goto('/en/results?county=kings&plan=H3359_021&specialty=cardiology');
   await page.waitForLoadState('networkidle');
