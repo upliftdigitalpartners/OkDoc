@@ -19,7 +19,36 @@ const flag = (name: string) => process.argv.includes(`--${name}`);
 const codeFor = (key: string) =>
   specialties.find((s) => s.key === key)?.taxonomyCodes[0] ?? null;
 
+/**
+ * Remove every demo artifact: the fixtures' fake providers (NPIs all start
+ * with 9; real NPIs never do), which cascade-delete their provider_plan
+ * links, plus the demo-only plan rows. Use after real syncs so the public
+ * site shows only real data.
+ */
+async function clearDemo() {
+  const db = getDb();
+  const demoNpis = fixtureProviders.map((p) => p.npi);
+  const demoPlanIds = fixturePlans.map((p) => p.planId);
+  const { error: pErr } = await db.from('providers').delete().in('npi', demoNpis);
+  if (pErr) throw new Error(`provider delete: ${pErr.message}`);
+  const { error: lErr } = await db
+    .from('provider_plan')
+    .delete()
+    .eq('source', 'demo-seed');
+  if (lErr) throw new Error(`link delete: ${lErr.message}`);
+  const { error: planErr } = await db.from('plans').delete().in('plan_id', demoPlanIds);
+  if (planErr) throw new Error(`plan delete: ${planErr.message}`);
+  console.log(
+    `✓ cleared ${demoNpis.length} demo providers + their links + ${demoPlanIds.length} demo plan ids. ` +
+      'Re-run `npm run sync:plans` to restore any of those ids that are real.',
+  );
+}
+
 async function main() {
+  if (flag('clear')) {
+    await clearDemo();
+    return;
+  }
   const now = new Date().toISOString();
 
   const planRows = fixturePlans.map((p) => ({
