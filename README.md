@@ -31,6 +31,7 @@ Open http://localhost:3000. With no `.env`, the app runs in **mock mode**:
 | `npm run sync:plans` | CMS MA landscape → `plans` table |
 | `npm run sync:payer -- --payer=<humana\|uhc>` | payer FHIR directory → `providers` + `provider_plan` |
 | `npm run sync:nppes` | NPPES enrichment (gender, missing fields) + geocoding |
+| `npm run seed:demo` | load the fixture data into Supabase to test the live path |
 
 ## Supabase setup
 
@@ -68,6 +69,20 @@ Useful flags: `--dry-run` (no DB writes), `--specialty=207RC0000X` (one
 specialty), `--discover=<query>` (search a payer's InsurancePlans to curate
 `src/ingestion/adapters/plan-network-map.json`).
 
+### Testing the live path without real syncs
+
+To verify a Supabase + deployment wiring works before committing to the
+hours-long real syncs, seed the fixtures into your database:
+
+```bash
+npm run seed:demo
+```
+
+> **Staging/testing only.** Once Supabase env vars are set, the app reports
+> `mode: live` and **drops the demo banner** — so seeded data shows fictional
+> doctors with no "demo" warning. Use this only on a staging project, and run
+> the real syncs (which overwrite it) before any public launch.
+
 ## Adding a payer adapter
 
 1. Recon first: find the payer's public Plan-Net FHIR base URL, verify
@@ -96,11 +111,18 @@ specialty), `--discover=<query>` (search a payer's InsurancePlans to curate
 ## Deploying to Vercel
 
 1. Push the repo to GitHub, import into Vercel (defaults work — Next 16).
-2. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` env vars (Production).
-   Without them the deployment serves demo data — useful for previews.
+2. Set env vars (Production):
+   - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — without them the deployment
+     serves demo data, which is useful for previews.
+   - `SITE_URL` — your canonical origin (e.g. `https://okdoc.app`). Used for
+     the sitemap, robots, canonical, and Open Graph URLs. It is read **at
+     build time** (those routes are static), so set it before the build;
+     Vercel exposes its env vars to the build automatically.
 3. Ingestion stays local by design (long-running syncs would hit serverless
    timeouts): run `npm run sync:*` from your machine against the same
    Supabase project whenever you want fresher data.
+4. Health check: `GET /api/health` returns `{status, mode, time}` for uptime
+   monitors (`degraded` + 503 if the DB is unreachable in live mode).
 
 ## Manual test checklist
 

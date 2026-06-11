@@ -11,7 +11,8 @@
     "check:i18n": "node scripts/check-messages.mjs",
     "sync:plans": "tsx scripts/sync-plans.ts",
     "sync:nppes": "tsx scripts/sync-nppes.ts",
-    "sync:payer": "tsx scripts/sync-payer.ts"
+    "sync:payer": "tsx scripts/sync-payer.ts",
+    "seed:demo": "tsx scripts/seed-demo.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
