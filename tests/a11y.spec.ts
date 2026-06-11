@@ -76,6 +76,14 @@ test('localized 404 page renders, RTL-aware, axe-clean', async ({ page }) => {
   expect(results.violations).toEqual([]);
 });
 
+test('/api/health responds ok and bypasses i18n routing', async ({ page }) => {
+  const res = await page.request.get('/api/health');
+  expect(res.ok()).toBe(true);
+  const body = await res.json();
+  expect(body.status).toBe('ok');
+  expect(['demo', 'live']).toContain(body.mode);
+});
+
 test('PWA: manifest, service worker, and offline page are served', async ({
   page,
 }) => {
