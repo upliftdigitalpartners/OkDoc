@@ -66,6 +66,16 @@ test('RTL (Arabic): dir is set, axe-clean, no horizontal scroll', async ({
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
+test('localized 404 page renders, RTL-aware, axe-clean', async ({ page }) => {
+  const response = await page.goto('/ar/this-page-does-not-exist');
+  expect(response?.status()).toBe(404);
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .analyze();
+  expect(results.violations).toEqual([]);
+});
+
 test('PWA: manifest, service worker, and offline page are served', async ({
   page,
 }) => {

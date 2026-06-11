@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "Doktè regilye pou tchekòp", "formal": "Swen primè" },
-    "geriatrics": { "plain": "Doktè pou granmoun aje", "formal": "Jeryat" },
-    "cardiology": { "plain": "Doktè kè", "formal": "Kadyològ" },
-    "pulmonology": { "plain": "Doktè poumon", "formal": "Pnemològ" },
-    "gastroenterology": { "plain": "Doktè vant ak dijesyon", "formal": "Gastwoanterològ" },
-    "endocrinology": { "plain": "Doktè dyabèt ak òmòn", "formal": "Andokrinològ" },
-    "nephrology": { "plain": "Doktè ren", "formal": "Nefwològ" },
-    "urology": { "plain": "Doktè pou pwoblèm pipi", "formal": "Iwològ" },
-    "orthopedics": { "plain": "Doktè zo ak jwenti", "formal": "Òtopedis" },
-    "rheumatology": { "plain": "Doktè atrit", "formal": "Rimatològ" },
-    "podiatry": { "plain": "Doktè pye", "formal": "Podyat" },
-    "ophthalmology": { "plain": "Doktè je", "formal": "Oftalmològ" },
-    "otolaryngology": { "plain": "Doktè zòrèy, nen ak gòj", "formal": "Otorinolaringològ (ORL)" },
-    "dermatology": { "plain": "Doktè po", "formal": "Dèmatològ" },
-    "neurology": { "plain": "Doktè sèvo ak nè", "formal": "Newològ" },
-    "psychiatry": { "plain": "Doktè sante mantal", "formal": "Sikyat" }
+    "primary-care": {
+      "plain": "Doktè regilye pou tchekòp",
+      "formal": "Swen primè"
+    },
+    "geriatrics": {
+      "plain": "Doktè pou granmoun aje",
+      "formal": "Jeryat"
+    },
+    "cardiology": {
+      "plain": "Doktè kè",
+      "formal": "Kadyològ"
+    },
+    "pulmonology": {
+      "plain": "Doktè poumon",
+      "formal": "Pnemològ"
+    },
+    "gastroenterology": {
+      "plain": "Doktè vant ak dijesyon",
+      "formal": "Gastwoanterològ"
+    },
+    "endocrinology": {
+      "plain": "Doktè dyabèt ak òmòn",
+      "formal": "Andokrinològ"
+    },
+    "nephrology": {
+      "plain": "Doktè ren",
+      "formal": "Nefwològ"
+    },
+    "urology": {
+      "plain": "Doktè pou pwoblèm pipi",
+      "formal": "Iwològ"
+    },
+    "orthopedics": {
+      "plain": "Doktè zo ak jwenti",
+      "formal": "Òtopedis"
+    },
+    "rheumatology": {
+      "plain": "Doktè atrit",
+      "formal": "Rimatològ"
+    },
+    "podiatry": {
+      "plain": "Doktè pye",
+      "formal": "Podyat"
+    },
+    "ophthalmology": {
+      "plain": "Doktè je",
+      "formal": "Oftalmològ"
+    },
+    "otolaryngology": {
+      "plain": "Doktè zòrèy, nen ak gòj",
+      "formal": "Otorinolaringològ (ORL)"
+    },
+    "dermatology": {
+      "plain": "Doktè po",
+      "formal": "Dèmatològ"
+    },
+    "neurology": {
+      "plain": "Doktè sèvo ak nè",
+      "formal": "Newològ"
+    },
+    "psychiatry": {
+      "plain": "Doktè sante mantal",
+      "formal": "Sikyat"
+    }
   },
   "filters": {
     "title": "Gen lòt bagay ki enpòtan pou ou?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc montre done piblik ki soti nan anyè asirans yo. Toujou konfime ak biwo doktè a. OkDoc pa bay konsèy medikal."
+  },
+  "errors": {
+    "notFoundTitle": "Nou pa jwenn paj sa a",
+    "notFoundBody": "Paj la ka deplase. Ann rekòmanse rechèch ou a.",
+    "errorTitle": "Yon bagay pa mache",
+    "errorBody": "Eskize nou, sa pa mache. Tanpri eseye ankò.",
+    "retry": "Eseye ankò",
+    "goHome": "Rekòmanse"
   },
   "languages": {
     "en": "Angle",

@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "সাধারণ চেকআপের ডাক্তার", "formal": "প্রাইমারি কেয়ার" },
-    "geriatrics": { "plain": "বয়স্কদের ডাক্তার", "formal": "জেরিয়াট্রিশিয়ান" },
-    "cardiology": { "plain": "হার্টের ডাক্তার", "formal": "কার্ডিওলজিস্ট" },
-    "pulmonology": { "plain": "ফুসফুসের ডাক্তার", "formal": "পালমোনোলজিস্ট" },
-    "gastroenterology": { "plain": "পেট ও হজমের ডাক্তার", "formal": "গ্যাস্ট্রোএন্টারোলজিস্ট" },
-    "endocrinology": { "plain": "ডায়াবেটিস ও হরমোনের ডাক্তার", "formal": "এন্ডোক্রিনোলজিস্ট" },
-    "nephrology": { "plain": "কিডনির ডাক্তার", "formal": "নেফ্রোলজিস্ট" },
-    "urology": { "plain": "প্রস্রাবের সমস্যার ডাক্তার", "formal": "ইউরোলজিস্ট" },
-    "orthopedics": { "plain": "হাড় ও জয়েন্টের ডাক্তার", "formal": "অর্থোপেডিস্ট" },
-    "rheumatology": { "plain": "বাতের ডাক্তার", "formal": "রিউমাটোলজিস্ট" },
-    "podiatry": { "plain": "পায়ের ডাক্তার", "formal": "পোডিয়াট্রিস্ট" },
-    "ophthalmology": { "plain": "চোখের ডাক্তার", "formal": "চক্ষু বিশেষজ্ঞ" },
-    "otolaryngology": { "plain": "কান, নাক ও গলার ডাক্তার", "formal": "নাক-কান-গলা (ইএনটি) বিশেষজ্ঞ" },
-    "dermatology": { "plain": "চামড়ার ডাক্তার", "formal": "ডার্মাটোলজিস্ট" },
-    "neurology": { "plain": "মস্তিষ্ক ও স্নায়ুর ডাক্তার", "formal": "নিউরোলজিস্ট" },
-    "psychiatry": { "plain": "মানসিক স্বাস্থ্যের ডাক্তার", "formal": "সাইকিয়াট্রিস্ট" }
+    "primary-care": {
+      "plain": "সাধারণ চেকআপের ডাক্তার",
+      "formal": "প্রাইমারি কেয়ার"
+    },
+    "geriatrics": {
+      "plain": "বয়স্কদের ডাক্তার",
+      "formal": "জেরিয়াট্রিশিয়ান"
+    },
+    "cardiology": {
+      "plain": "হার্টের ডাক্তার",
+      "formal": "কার্ডিওলজিস্ট"
+    },
+    "pulmonology": {
+      "plain": "ফুসফুসের ডাক্তার",
+      "formal": "পালমোনোলজিস্ট"
+    },
+    "gastroenterology": {
+      "plain": "পেট ও হজমের ডাক্তার",
+      "formal": "গ্যাস্ট্রোএন্টারোলজিস্ট"
+    },
+    "endocrinology": {
+      "plain": "ডায়াবেটিস ও হরমোনের ডাক্তার",
+      "formal": "এন্ডোক্রিনোলজিস্ট"
+    },
+    "nephrology": {
+      "plain": "কিডনির ডাক্তার",
+      "formal": "নেফ্রোলজিস্ট"
+    },
+    "urology": {
+      "plain": "প্রস্রাবের সমস্যার ডাক্তার",
+      "formal": "ইউরোলজিস্ট"
+    },
+    "orthopedics": {
+      "plain": "হাড় ও জয়েন্টের ডাক্তার",
+      "formal": "অর্থোপেডিস্ট"
+    },
+    "rheumatology": {
+      "plain": "বাতের ডাক্তার",
+      "formal": "রিউমাটোলজিস্ট"
+    },
+    "podiatry": {
+      "plain": "পায়ের ডাক্তার",
+      "formal": "পোডিয়াট্রিস্ট"
+    },
+    "ophthalmology": {
+      "plain": "চোখের ডাক্তার",
+      "formal": "চক্ষু বিশেষজ্ঞ"
+    },
+    "otolaryngology": {
+      "plain": "কান, নাক ও গলার ডাক্তার",
+      "formal": "নাক-কান-গলা (ইএনটি) বিশেষজ্ঞ"
+    },
+    "dermatology": {
+      "plain": "চামড়ার ডাক্তার",
+      "formal": "ডার্মাটোলজিস্ট"
+    },
+    "neurology": {
+      "plain": "মস্তিষ্ক ও স্নায়ুর ডাক্তার",
+      "formal": "নিউরোলজিস্ট"
+    },
+    "psychiatry": {
+      "plain": "মানসিক স্বাস্থ্যের ডাক্তার",
+      "formal": "সাইকিয়াট্রিস্ট"
+    }
   },
   "filters": {
     "title": "আর কিছু কি আপনার কাছে গুরুত্বপূর্ণ?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc পাবলিক ইনস্যুরেন্স ডিরেক্টরির তথ্য দেখায়। সবসময় ডাক্তারের অফিসে ফোন করে নিশ্চিত হয়ে নিন। OkDoc কোনো চিকিৎসা পরামর্শ দেয় না।"
+  },
+  "errors": {
+    "notFoundTitle": "আমরা সেই পৃষ্ঠাটি খুঁজে পাচ্ছি না",
+    "notFoundBody": "পৃষ্ঠাটি সরে গিয়ে থাকতে পারে। চলুন আবার খোঁজা শুরু করি।",
+    "errorTitle": "কিছু একটা ভুল হয়েছে",
+    "errorBody": "দুঃখিত, এটি কাজ করেনি। আবার চেষ্টা করুন।",
+    "retry": "আবার চেষ্টা করুন",
+    "goHome": "আবার শুরু করুন"
   },
   "languages": {
     "en": "ইংরেজি",

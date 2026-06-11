@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "नियमित जाँच के डॉक्टर", "formal": "प्राइमरी केयर" },
-    "geriatrics": { "plain": "बुज़ुर्गों के डॉक्टर", "formal": "जेरिएट्रिशियन" },
-    "cardiology": { "plain": "दिल के डॉक्टर", "formal": "कार्डियोलॉजिस्ट" },
-    "pulmonology": { "plain": "फेफड़ों के डॉक्टर", "formal": "पल्मोनोलॉजिस्ट" },
-    "gastroenterology": { "plain": "पेट और पाचन के डॉक्टर", "formal": "गैस्ट्रोएंटेरोलॉजिस्ट" },
-    "endocrinology": { "plain": "डायबिटीज़ और हार्मोन के डॉक्टर", "formal": "एंडोक्रिनोलॉजिस्ट" },
-    "nephrology": { "plain": "किडनी के डॉक्टर", "formal": "नेफ्रोलॉजिस्ट" },
-    "urology": { "plain": "पेशाब की समस्याओं के डॉक्टर", "formal": "यूरोलॉजिस्ट" },
-    "orthopedics": { "plain": "हड्डी और जोड़ के डॉक्टर", "formal": "ऑर्थोपेडिस्ट" },
-    "rheumatology": { "plain": "गठिया के डॉक्टर", "formal": "रुमेटोलॉजिस्ट" },
-    "podiatry": { "plain": "पैरों के डॉक्टर", "formal": "पोडियाट्रिस्ट" },
-    "ophthalmology": { "plain": "आँखों के डॉक्टर", "formal": "नेत्र रोग विशेषज्ञ" },
-    "otolaryngology": { "plain": "कान, नाक और गले के डॉक्टर", "formal": "ईएनटी विशेषज्ञ" },
-    "dermatology": { "plain": "त्वचा के डॉक्टर", "formal": "डर्मेटोलॉजिस्ट" },
-    "neurology": { "plain": "दिमाग़ और नसों के डॉक्टर", "formal": "न्यूरोलॉजिस्ट" },
-    "psychiatry": { "plain": "मानसिक स्वास्थ्य के डॉक्टर", "formal": "मनोचिकित्सक" }
+    "primary-care": {
+      "plain": "नियमित जाँच के डॉक्टर",
+      "formal": "प्राइमरी केयर"
+    },
+    "geriatrics": {
+      "plain": "बुज़ुर्गों के डॉक्टर",
+      "formal": "जेरिएट्रिशियन"
+    },
+    "cardiology": {
+      "plain": "दिल के डॉक्टर",
+      "formal": "कार्डियोलॉजिस्ट"
+    },
+    "pulmonology": {
+      "plain": "फेफड़ों के डॉक्टर",
+      "formal": "पल्मोनोलॉजिस्ट"
+    },
+    "gastroenterology": {
+      "plain": "पेट और पाचन के डॉक्टर",
+      "formal": "गैस्ट्रोएंटेरोलॉजिस्ट"
+    },
+    "endocrinology": {
+      "plain": "डायबिटीज़ और हार्मोन के डॉक्टर",
+      "formal": "एंडोक्रिनोलॉजिस्ट"
+    },
+    "nephrology": {
+      "plain": "किडनी के डॉक्टर",
+      "formal": "नेफ्रोलॉजिस्ट"
+    },
+    "urology": {
+      "plain": "पेशाब की समस्याओं के डॉक्टर",
+      "formal": "यूरोलॉजिस्ट"
+    },
+    "orthopedics": {
+      "plain": "हड्डी और जोड़ के डॉक्टर",
+      "formal": "ऑर्थोपेडिस्ट"
+    },
+    "rheumatology": {
+      "plain": "गठिया के डॉक्टर",
+      "formal": "रुमेटोलॉजिस्ट"
+    },
+    "podiatry": {
+      "plain": "पैरों के डॉक्टर",
+      "formal": "पोडियाट्रिस्ट"
+    },
+    "ophthalmology": {
+      "plain": "आँखों के डॉक्टर",
+      "formal": "नेत्र रोग विशेषज्ञ"
+    },
+    "otolaryngology": {
+      "plain": "कान, नाक और गले के डॉक्टर",
+      "formal": "ईएनटी विशेषज्ञ"
+    },
+    "dermatology": {
+      "plain": "त्वचा के डॉक्टर",
+      "formal": "डर्मेटोलॉजिस्ट"
+    },
+    "neurology": {
+      "plain": "दिमाग़ और नसों के डॉक्टर",
+      "formal": "न्यूरोलॉजिस्ट"
+    },
+    "psychiatry": {
+      "plain": "मानसिक स्वास्थ्य के डॉक्टर",
+      "formal": "मनोचिकित्सक"
+    }
   },
   "filters": {
     "title": "क्या और कुछ ज़रूरी है?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc सार्वजनिक बीमा डायरेक्टरी का डेटा दिखाता है। हमेशा डॉक्टर के ऑफिस से पुष्टि करें। OkDoc चिकित्सा सलाह नहीं देता।"
+  },
+  "errors": {
+    "notFoundTitle": "हमें वह पेज नहीं मिला",
+    "notFoundBody": "शायद पेज हट गया है। चलिए फिर से खोज शुरू करते हैं।",
+    "errorTitle": "कुछ गड़बड़ हो गई",
+    "errorBody": "माफ़ करें, यह काम नहीं आया। कृपया फिर से कोशिश करें।",
+    "retry": "फिर से कोशिश करें",
+    "goHome": "फिर से शुरू करें"
   },
   "languages": {
     "en": "अंग्रेज़ी",

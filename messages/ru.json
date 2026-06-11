@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "Обычный врач для осмотров", "formal": "Терапевт" },
-    "geriatrics": { "plain": "Врач для пожилых людей", "formal": "Гериатр" },
-    "cardiology": { "plain": "Врач по сердцу", "formal": "Кардиолог" },
-    "pulmonology": { "plain": "Врач по лёгким", "formal": "Пульмонолог" },
-    "gastroenterology": { "plain": "Врач по желудку и пищеварению", "formal": "Гастроэнтеролог" },
-    "endocrinology": { "plain": "Врач по диабету и гормонам", "formal": "Эндокринолог" },
-    "nephrology": { "plain": "Врач по почкам", "formal": "Нефролог" },
-    "urology": { "plain": "Врач по мочевому пузырю", "formal": "Уролог" },
-    "orthopedics": { "plain": "Врач по костям и суставам", "formal": "Ортопед" },
-    "rheumatology": { "plain": "Врач по артриту", "formal": "Ревматолог" },
-    "podiatry": { "plain": "Врач по стопам и ногам", "formal": "Подиатр" },
-    "ophthalmology": { "plain": "Глазной врач", "formal": "Офтальмолог" },
-    "otolaryngology": { "plain": "Врач ухо-горло-нос", "formal": "Отоларинголог (ЛОР)" },
-    "dermatology": { "plain": "Кожный врач", "formal": "Дерматолог" },
-    "neurology": { "plain": "Врач по мозгу и нервам", "formal": "Невролог" },
-    "psychiatry": { "plain": "Врач по душевному здоровью", "formal": "Психиатр" }
+    "primary-care": {
+      "plain": "Обычный врач для осмотров",
+      "formal": "Терапевт"
+    },
+    "geriatrics": {
+      "plain": "Врач для пожилых людей",
+      "formal": "Гериатр"
+    },
+    "cardiology": {
+      "plain": "Врач по сердцу",
+      "formal": "Кардиолог"
+    },
+    "pulmonology": {
+      "plain": "Врач по лёгким",
+      "formal": "Пульмонолог"
+    },
+    "gastroenterology": {
+      "plain": "Врач по желудку и пищеварению",
+      "formal": "Гастроэнтеролог"
+    },
+    "endocrinology": {
+      "plain": "Врач по диабету и гормонам",
+      "formal": "Эндокринолог"
+    },
+    "nephrology": {
+      "plain": "Врач по почкам",
+      "formal": "Нефролог"
+    },
+    "urology": {
+      "plain": "Врач по мочевому пузырю",
+      "formal": "Уролог"
+    },
+    "orthopedics": {
+      "plain": "Врач по костям и суставам",
+      "formal": "Ортопед"
+    },
+    "rheumatology": {
+      "plain": "Врач по артриту",
+      "formal": "Ревматолог"
+    },
+    "podiatry": {
+      "plain": "Врач по стопам и ногам",
+      "formal": "Подиатр"
+    },
+    "ophthalmology": {
+      "plain": "Глазной врач",
+      "formal": "Офтальмолог"
+    },
+    "otolaryngology": {
+      "plain": "Врач ухо-горло-нос",
+      "formal": "Отоларинголог (ЛОР)"
+    },
+    "dermatology": {
+      "plain": "Кожный врач",
+      "formal": "Дерматолог"
+    },
+    "neurology": {
+      "plain": "Врач по мозгу и нервам",
+      "formal": "Невролог"
+    },
+    "psychiatry": {
+      "plain": "Врач по душевному здоровью",
+      "formal": "Психиатр"
+    }
   },
   "filters": {
     "title": "Что ещё для вас важно?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc показывает открытые данные страховых справочников. Всегда уточняйте информацию в офисе врача. OkDoc не даёт медицинских советов."
+  },
+  "errors": {
+    "notFoundTitle": "Не удаётся найти эту страницу",
+    "notFoundBody": "Возможно, страница перемещена. Давайте начнём поиск заново.",
+    "errorTitle": "Что-то пошло не так",
+    "errorBody": "Извините, не получилось. Попробуйте ещё раз.",
+    "retry": "Попробовать снова",
+    "goHome": "Начать заново"
   },
   "languages": {
     "en": "Английский",

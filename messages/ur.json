@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "عام چیک اپ کے ڈاکٹر", "formal": "پرائمری کیئر" },
-    "geriatrics": { "plain": "بزرگوں کے ڈاکٹر", "formal": "جیریاٹریشن" },
-    "cardiology": { "plain": "دل کے ڈاکٹر", "formal": "کارڈیالوجسٹ" },
-    "pulmonology": { "plain": "پھیپھڑوں کے ڈاکٹر", "formal": "پلمونولوجسٹ" },
-    "gastroenterology": { "plain": "معدے اور ہاضمے کے ڈاکٹر", "formal": "گیسٹرواینٹرولوجسٹ" },
-    "endocrinology": { "plain": "ذیابیطس اور ہارمون کے ڈاکٹر", "formal": "اینڈوکرائنولوجسٹ" },
-    "nephrology": { "plain": "گردوں کے ڈاکٹر", "formal": "نیفرولوجسٹ" },
-    "urology": { "plain": "پیشاب کے مسائل کے ڈاکٹر", "formal": "یورولوجسٹ" },
-    "orthopedics": { "plain": "ہڈی اور جوڑ کے ڈاکٹر", "formal": "آرتھوپیڈسٹ" },
-    "rheumatology": { "plain": "گٹھیا کے ڈاکٹر", "formal": "ریوماٹولوجسٹ" },
-    "podiatry": { "plain": "پاؤں کے ڈاکٹر", "formal": "پوڈیاٹرسٹ" },
-    "ophthalmology": { "plain": "آنکھوں کے ڈاکٹر", "formal": "ماہرِ امراضِ چشم" },
-    "otolaryngology": { "plain": "کان، ناک اور گلے کے ڈاکٹر", "formal": "ای این ٹی ماہر" },
-    "dermatology": { "plain": "جلد کے ڈاکٹر", "formal": "ڈرماٹولوجسٹ" },
-    "neurology": { "plain": "دماغ اور اعصاب کے ڈاکٹر", "formal": "نیورولوجسٹ" },
-    "psychiatry": { "plain": "ذہنی صحت کے ڈاکٹر", "formal": "ماہرِ نفسیات" }
+    "primary-care": {
+      "plain": "عام چیک اپ کے ڈاکٹر",
+      "formal": "پرائمری کیئر"
+    },
+    "geriatrics": {
+      "plain": "بزرگوں کے ڈاکٹر",
+      "formal": "جیریاٹریشن"
+    },
+    "cardiology": {
+      "plain": "دل کے ڈاکٹر",
+      "formal": "کارڈیالوجسٹ"
+    },
+    "pulmonology": {
+      "plain": "پھیپھڑوں کے ڈاکٹر",
+      "formal": "پلمونولوجسٹ"
+    },
+    "gastroenterology": {
+      "plain": "معدے اور ہاضمے کے ڈاکٹر",
+      "formal": "گیسٹرواینٹرولوجسٹ"
+    },
+    "endocrinology": {
+      "plain": "ذیابیطس اور ہارمون کے ڈاکٹر",
+      "formal": "اینڈوکرائنولوجسٹ"
+    },
+    "nephrology": {
+      "plain": "گردوں کے ڈاکٹر",
+      "formal": "نیفرولوجسٹ"
+    },
+    "urology": {
+      "plain": "پیشاب کے مسائل کے ڈاکٹر",
+      "formal": "یورولوجسٹ"
+    },
+    "orthopedics": {
+      "plain": "ہڈی اور جوڑ کے ڈاکٹر",
+      "formal": "آرتھوپیڈسٹ"
+    },
+    "rheumatology": {
+      "plain": "گٹھیا کے ڈاکٹر",
+      "formal": "ریوماٹولوجسٹ"
+    },
+    "podiatry": {
+      "plain": "پاؤں کے ڈاکٹر",
+      "formal": "پوڈیاٹرسٹ"
+    },
+    "ophthalmology": {
+      "plain": "آنکھوں کے ڈاکٹر",
+      "formal": "ماہرِ امراضِ چشم"
+    },
+    "otolaryngology": {
+      "plain": "کان، ناک اور گلے کے ڈاکٹر",
+      "formal": "ای این ٹی ماہر"
+    },
+    "dermatology": {
+      "plain": "جلد کے ڈاکٹر",
+      "formal": "ڈرماٹولوجسٹ"
+    },
+    "neurology": {
+      "plain": "دماغ اور اعصاب کے ڈاکٹر",
+      "formal": "نیورولوجسٹ"
+    },
+    "psychiatry": {
+      "plain": "ذہنی صحت کے ڈاکٹر",
+      "formal": "ماہرِ نفسیات"
+    }
   },
   "filters": {
     "title": "کیا کچھ اور بھی اہم ہے؟",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc عوامی انشورنس ڈائریکٹری کا ڈیٹا دکھاتا ہے۔ ہمیشہ ڈاکٹر کے دفتر سے تصدیق کریں۔ OkDoc طبی مشورہ نہیں دیتا۔"
+  },
+  "errors": {
+    "notFoundTitle": "ہمیں وہ صفحہ نہیں مل رہا",
+    "notFoundBody": "ممکن ہے صفحہ منتقل ہو گیا ہو۔ آئیے دوبارہ تلاش شروع کریں۔",
+    "errorTitle": "کچھ غلط ہو گیا",
+    "errorBody": "معذرت، یہ کام نہیں کیا۔ براہ کرم دوبارہ کوشش کریں۔",
+    "retry": "دوبارہ کوشش کریں",
+    "goHome": "دوبارہ شروع کریں"
   },
   "languages": {
     "en": "انگریزی",

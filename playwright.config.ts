@@ -14,9 +14,12 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run dev',
+    // Test against a production build, not the dev server: dev compiles
+    // routes on first hit, which races axe and yields flaky results. This
+    // also exercises the real output (security headers, SW, static gen).
+    command: 'npm run build && npm run start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: 240_000,
   },
 });

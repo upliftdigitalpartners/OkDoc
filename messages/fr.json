@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "Médecin de famille", "formal": "Soins primaires" },
-    "geriatrics": { "plain": "Médecin pour les personnes âgées", "formal": "Gériatre" },
-    "cardiology": { "plain": "Médecin du cœur", "formal": "Cardiologue" },
-    "pulmonology": { "plain": "Médecin des poumons", "formal": "Pneumologue" },
-    "gastroenterology": { "plain": "Médecin de l'estomac et de la digestion", "formal": "Gastro-entérologue" },
-    "endocrinology": { "plain": "Médecin du diabète et des hormones", "formal": "Endocrinologue" },
-    "nephrology": { "plain": "Médecin des reins", "formal": "Néphrologue" },
-    "urology": { "plain": "Médecin de la vessie et des voies urinaires", "formal": "Urologue" },
-    "orthopedics": { "plain": "Médecin des os et des articulations", "formal": "Orthopédiste" },
-    "rheumatology": { "plain": "Médecin de l'arthrite", "formal": "Rhumatologue" },
-    "podiatry": { "plain": "Médecin des pieds", "formal": "Podiatre" },
-    "ophthalmology": { "plain": "Médecin des yeux", "formal": "Ophtalmologue" },
-    "otolaryngology": { "plain": "Médecin des oreilles, du nez et de la gorge", "formal": "Oto-rhino-laryngologiste (ORL)" },
-    "dermatology": { "plain": "Médecin de la peau", "formal": "Dermatologue" },
-    "neurology": { "plain": "Médecin du cerveau et des nerfs", "formal": "Neurologue" },
-    "psychiatry": { "plain": "Médecin de la santé mentale", "formal": "Psychiatre" }
+    "primary-care": {
+      "plain": "Médecin de famille",
+      "formal": "Soins primaires"
+    },
+    "geriatrics": {
+      "plain": "Médecin pour les personnes âgées",
+      "formal": "Gériatre"
+    },
+    "cardiology": {
+      "plain": "Médecin du cœur",
+      "formal": "Cardiologue"
+    },
+    "pulmonology": {
+      "plain": "Médecin des poumons",
+      "formal": "Pneumologue"
+    },
+    "gastroenterology": {
+      "plain": "Médecin de l'estomac et de la digestion",
+      "formal": "Gastro-entérologue"
+    },
+    "endocrinology": {
+      "plain": "Médecin du diabète et des hormones",
+      "formal": "Endocrinologue"
+    },
+    "nephrology": {
+      "plain": "Médecin des reins",
+      "formal": "Néphrologue"
+    },
+    "urology": {
+      "plain": "Médecin de la vessie et des voies urinaires",
+      "formal": "Urologue"
+    },
+    "orthopedics": {
+      "plain": "Médecin des os et des articulations",
+      "formal": "Orthopédiste"
+    },
+    "rheumatology": {
+      "plain": "Médecin de l'arthrite",
+      "formal": "Rhumatologue"
+    },
+    "podiatry": {
+      "plain": "Médecin des pieds",
+      "formal": "Podiatre"
+    },
+    "ophthalmology": {
+      "plain": "Médecin des yeux",
+      "formal": "Ophtalmologue"
+    },
+    "otolaryngology": {
+      "plain": "Médecin des oreilles, du nez et de la gorge",
+      "formal": "Oto-rhino-laryngologiste (ORL)"
+    },
+    "dermatology": {
+      "plain": "Médecin de la peau",
+      "formal": "Dermatologue"
+    },
+    "neurology": {
+      "plain": "Médecin du cerveau et des nerfs",
+      "formal": "Neurologue"
+    },
+    "psychiatry": {
+      "plain": "Médecin de la santé mentale",
+      "formal": "Psychiatre"
+    }
   },
   "filters": {
     "title": "Autre chose d'important pour vous ?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc affiche des données publiques d'annuaires d'assurance. Confirmez toujours auprès du cabinet du médecin. OkDoc ne donne pas de conseils médicaux."
+  },
+  "errors": {
+    "notFoundTitle": "Nous ne trouvons pas cette page",
+    "notFoundBody": "La page a peut-être été déplacée. Recommençons votre recherche.",
+    "errorTitle": "Une erreur s'est produite",
+    "errorBody": "Désolé, cela n'a pas fonctionné. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "goHome": "Recommencer"
   },
   "languages": {
     "en": "Anglais",

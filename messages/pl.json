@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "Zwykły lekarz do badań kontrolnych", "formal": "Lekarz pierwszego kontaktu" },
-    "geriatrics": { "plain": "Lekarz dla osób starszych", "formal": "Geriatra" },
-    "cardiology": { "plain": "Lekarz od serca", "formal": "Kardiolog" },
-    "pulmonology": { "plain": "Lekarz od płuc", "formal": "Pulmonolog" },
-    "gastroenterology": { "plain": "Lekarz od żołądka i trawienia", "formal": "Gastroenterolog" },
-    "endocrinology": { "plain": "Lekarz od cukrzycy i hormonów", "formal": "Endokrynolog" },
-    "nephrology": { "plain": "Lekarz od nerek", "formal": "Nefrolog" },
-    "urology": { "plain": "Lekarz od pęcherza i dróg moczowych", "formal": "Urolog" },
-    "orthopedics": { "plain": "Lekarz od kości i stawów", "formal": "Ortopeda" },
-    "rheumatology": { "plain": "Lekarz od reumatyzmu", "formal": "Reumatolog" },
-    "podiatry": { "plain": "Lekarz od stóp", "formal": "Podiatra" },
-    "ophthalmology": { "plain": "Lekarz od oczu", "formal": "Okulista" },
-    "otolaryngology": { "plain": "Lekarz od uszu, nosa i gardła", "formal": "Laryngolog" },
-    "dermatology": { "plain": "Lekarz od skóry", "formal": "Dermatolog" },
-    "neurology": { "plain": "Lekarz od mózgu i nerwów", "formal": "Neurolog" },
-    "psychiatry": { "plain": "Lekarz od zdrowia psychicznego", "formal": "Psychiatra" }
+    "primary-care": {
+      "plain": "Zwykły lekarz do badań kontrolnych",
+      "formal": "Lekarz pierwszego kontaktu"
+    },
+    "geriatrics": {
+      "plain": "Lekarz dla osób starszych",
+      "formal": "Geriatra"
+    },
+    "cardiology": {
+      "plain": "Lekarz od serca",
+      "formal": "Kardiolog"
+    },
+    "pulmonology": {
+      "plain": "Lekarz od płuc",
+      "formal": "Pulmonolog"
+    },
+    "gastroenterology": {
+      "plain": "Lekarz od żołądka i trawienia",
+      "formal": "Gastroenterolog"
+    },
+    "endocrinology": {
+      "plain": "Lekarz od cukrzycy i hormonów",
+      "formal": "Endokrynolog"
+    },
+    "nephrology": {
+      "plain": "Lekarz od nerek",
+      "formal": "Nefrolog"
+    },
+    "urology": {
+      "plain": "Lekarz od pęcherza i dróg moczowych",
+      "formal": "Urolog"
+    },
+    "orthopedics": {
+      "plain": "Lekarz od kości i stawów",
+      "formal": "Ortopeda"
+    },
+    "rheumatology": {
+      "plain": "Lekarz od reumatyzmu",
+      "formal": "Reumatolog"
+    },
+    "podiatry": {
+      "plain": "Lekarz od stóp",
+      "formal": "Podiatra"
+    },
+    "ophthalmology": {
+      "plain": "Lekarz od oczu",
+      "formal": "Okulista"
+    },
+    "otolaryngology": {
+      "plain": "Lekarz od uszu, nosa i gardła",
+      "formal": "Laryngolog"
+    },
+    "dermatology": {
+      "plain": "Lekarz od skóry",
+      "formal": "Dermatolog"
+    },
+    "neurology": {
+      "plain": "Lekarz od mózgu i nerwów",
+      "formal": "Neurolog"
+    },
+    "psychiatry": {
+      "plain": "Lekarz od zdrowia psychicznego",
+      "formal": "Psychiatra"
+    }
   },
   "filters": {
     "title": "Czy coś jeszcze jest ważne?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc pokazuje publiczne dane z katalogów ubezpieczeniowych. Zawsze proszę potwierdzić informacje w gabinecie lekarza. OkDoc nie udziela porad medycznych."
+  },
+  "errors": {
+    "notFoundTitle": "Nie możemy znaleźć tej strony",
+    "notFoundBody": "Strona mogła zostać przeniesiona. Zacznijmy wyszukiwanie od nowa.",
+    "errorTitle": "Coś poszło nie tak",
+    "errorBody": "Przepraszamy, nie udało się. Spróbuj ponownie.",
+    "retry": "Spróbuj ponownie",
+    "goHome": "Zacznij od nowa"
   },
   "languages": {
     "en": "Angielski",

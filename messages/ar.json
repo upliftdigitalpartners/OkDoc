@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "طبيب الفحص الدوري", "formal": "الرعاية الأولية" },
-    "geriatrics": { "plain": "طبيب كبار السن", "formal": "أخصائي طب الشيخوخة" },
-    "cardiology": { "plain": "طبيب القلب", "formal": "أخصائي أمراض القلب" },
-    "pulmonology": { "plain": "طبيب الرئة", "formal": "أخصائي أمراض الصدر" },
-    "gastroenterology": { "plain": "طبيب المعدة والهضم", "formal": "أخصائي الجهاز الهضمي" },
-    "endocrinology": { "plain": "طبيب السكري والهرمونات", "formal": "أخصائي الغدد الصماء" },
-    "nephrology": { "plain": "طبيب الكلى", "formal": "أخصائي أمراض الكلى" },
-    "urology": { "plain": "طبيب المسالك البولية", "formal": "أخصائي المسالك البولية" },
-    "orthopedics": { "plain": "طبيب العظام والمفاصل", "formal": "أخصائي جراحة العظام" },
-    "rheumatology": { "plain": "طبيب التهاب المفاصل والروماتيزم", "formal": "أخصائي الروماتيزم" },
-    "podiatry": { "plain": "طبيب القدم", "formal": "أخصائي علاج القدم" },
-    "ophthalmology": { "plain": "طبيب العيون", "formal": "أخصائي طب العيون" },
-    "otolaryngology": { "plain": "طبيب الأذن والأنف والحنجرة", "formal": "أخصائي أنف وأذن وحنجرة" },
-    "dermatology": { "plain": "طبيب الجلد", "formal": "أخصائي الأمراض الجلدية" },
-    "neurology": { "plain": "طبيب الدماغ والأعصاب", "formal": "أخصائي الأعصاب" },
-    "psychiatry": { "plain": "طبيب الصحة النفسية", "formal": "طبيب نفسي" }
+    "primary-care": {
+      "plain": "طبيب الفحص الدوري",
+      "formal": "الرعاية الأولية"
+    },
+    "geriatrics": {
+      "plain": "طبيب كبار السن",
+      "formal": "أخصائي طب الشيخوخة"
+    },
+    "cardiology": {
+      "plain": "طبيب القلب",
+      "formal": "أخصائي أمراض القلب"
+    },
+    "pulmonology": {
+      "plain": "طبيب الرئة",
+      "formal": "أخصائي أمراض الصدر"
+    },
+    "gastroenterology": {
+      "plain": "طبيب المعدة والهضم",
+      "formal": "أخصائي الجهاز الهضمي"
+    },
+    "endocrinology": {
+      "plain": "طبيب السكري والهرمونات",
+      "formal": "أخصائي الغدد الصماء"
+    },
+    "nephrology": {
+      "plain": "طبيب الكلى",
+      "formal": "أخصائي أمراض الكلى"
+    },
+    "urology": {
+      "plain": "طبيب المسالك البولية",
+      "formal": "أخصائي المسالك البولية"
+    },
+    "orthopedics": {
+      "plain": "طبيب العظام والمفاصل",
+      "formal": "أخصائي جراحة العظام"
+    },
+    "rheumatology": {
+      "plain": "طبيب التهاب المفاصل والروماتيزم",
+      "formal": "أخصائي الروماتيزم"
+    },
+    "podiatry": {
+      "plain": "طبيب القدم",
+      "formal": "أخصائي علاج القدم"
+    },
+    "ophthalmology": {
+      "plain": "طبيب العيون",
+      "formal": "أخصائي طب العيون"
+    },
+    "otolaryngology": {
+      "plain": "طبيب الأذن والأنف والحنجرة",
+      "formal": "أخصائي أنف وأذن وحنجرة"
+    },
+    "dermatology": {
+      "plain": "طبيب الجلد",
+      "formal": "أخصائي الأمراض الجلدية"
+    },
+    "neurology": {
+      "plain": "طبيب الدماغ والأعصاب",
+      "formal": "أخصائي الأعصاب"
+    },
+    "psychiatry": {
+      "plain": "طبيب الصحة النفسية",
+      "formal": "طبيب نفسي"
+    }
   },
   "filters": {
     "title": "هل من أمور أخرى تهمك؟",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "يعرض OkDoc بيانات أدلة التأمين العامة. تأكد دائمًا من عيادة الطبيب. لا يقدم OkDoc نصائح طبية."
+  },
+  "errors": {
+    "notFoundTitle": "تعذّر العثور على هذه الصفحة",
+    "notFoundBody": "قد تكون الصفحة قد نُقلت. لنبدأ بحثك من جديد.",
+    "errorTitle": "حدث خطأ ما",
+    "errorBody": "عذرًا، لم ينجح ذلك. يرجى المحاولة مجددًا.",
+    "retry": "حاول مجددًا",
+    "goHome": "ابدأ من جديد"
   },
   "languages": {
     "en": "الإنجليزية",

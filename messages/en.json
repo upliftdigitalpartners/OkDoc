@@ -131,6 +131,14 @@
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc shows public insurance directory data. Always confirm with the doctor's office. OkDoc does not give medical advice."
   },
+  "errors": {
+    "notFoundTitle": "We can't find that page",
+    "notFoundBody": "The page may have moved. Let's start your search again.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "Sorry, that didn't work. Please try again.",
+    "retry": "Try again",
+    "goHome": "Start over"
+  },
   "languages": {
     "en": "English",
     "es": "Spanish",

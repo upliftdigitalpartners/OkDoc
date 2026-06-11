@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "家庭医生（看普通门诊）", "formal": "初级保健科" },
-    "geriatrics": { "plain": "专看老年人的医生", "formal": "老年医学科医生" },
-    "cardiology": { "plain": "心脏科医生", "formal": "心血管内科医生" },
-    "pulmonology": { "plain": "肺科医生", "formal": "呼吸内科医生" },
-    "gastroenterology": { "plain": "肠胃科医生", "formal": "消化内科医生" },
-    "endocrinology": { "plain": "看糖尿病和内分泌的医生", "formal": "内分泌科医生" },
-    "nephrology": { "plain": "肾科医生", "formal": "肾内科医生" },
-    "urology": { "plain": "泌尿科医生", "formal": "泌尿外科医生" },
-    "orthopedics": { "plain": "看骨头和关节的医生", "formal": "骨科医生" },
-    "rheumatology": { "plain": "看关节炎的医生", "formal": "风湿科医生" },
-    "podiatry": { "plain": "足科医生", "formal": "足病科医生" },
-    "ophthalmology": { "plain": "看眼睛的医生", "formal": "眼科医生" },
-    "otolaryngology": { "plain": "耳鼻喉科医生", "formal": "耳鼻咽喉科医生" },
-    "dermatology": { "plain": "看皮肤的医生", "formal": "皮肤科医生" },
-    "neurology": { "plain": "看大脑和神经的医生", "formal": "神经内科医生" },
-    "psychiatry": { "plain": "看心理健康的医生", "formal": "精神科医生" }
+    "primary-care": {
+      "plain": "家庭医生（看普通门诊）",
+      "formal": "初级保健科"
+    },
+    "geriatrics": {
+      "plain": "专看老年人的医生",
+      "formal": "老年医学科医生"
+    },
+    "cardiology": {
+      "plain": "心脏科医生",
+      "formal": "心血管内科医生"
+    },
+    "pulmonology": {
+      "plain": "肺科医生",
+      "formal": "呼吸内科医生"
+    },
+    "gastroenterology": {
+      "plain": "肠胃科医生",
+      "formal": "消化内科医生"
+    },
+    "endocrinology": {
+      "plain": "看糖尿病和内分泌的医生",
+      "formal": "内分泌科医生"
+    },
+    "nephrology": {
+      "plain": "肾科医生",
+      "formal": "肾内科医生"
+    },
+    "urology": {
+      "plain": "泌尿科医生",
+      "formal": "泌尿外科医生"
+    },
+    "orthopedics": {
+      "plain": "看骨头和关节的医生",
+      "formal": "骨科医生"
+    },
+    "rheumatology": {
+      "plain": "看关节炎的医生",
+      "formal": "风湿科医生"
+    },
+    "podiatry": {
+      "plain": "足科医生",
+      "formal": "足病科医生"
+    },
+    "ophthalmology": {
+      "plain": "看眼睛的医生",
+      "formal": "眼科医生"
+    },
+    "otolaryngology": {
+      "plain": "耳鼻喉科医生",
+      "formal": "耳鼻咽喉科医生"
+    },
+    "dermatology": {
+      "plain": "看皮肤的医生",
+      "formal": "皮肤科医生"
+    },
+    "neurology": {
+      "plain": "看大脑和神经的医生",
+      "formal": "神经内科医生"
+    },
+    "psychiatry": {
+      "plain": "看心理健康的医生",
+      "formal": "精神科医生"
+    }
   },
   "filters": {
     "title": "还有其他需要考虑的吗？",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc 显示的是公开的保险名录数据。请务必与医生诊所确认。OkDoc 不提供医疗建议。"
+  },
+  "errors": {
+    "notFoundTitle": "找不到该页面",
+    "notFoundBody": "该页面可能已移动。让我们重新开始搜索。",
+    "errorTitle": "出错了",
+    "errorBody": "抱歉，操作失败。请重试。",
+    "retry": "重试",
+    "goHome": "重新开始"
   },
   "languages": {
     "en": "英语",

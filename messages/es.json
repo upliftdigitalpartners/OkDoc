@@ -65,22 +65,70 @@
   },
   "specialties": {
     "//": "NEEDS_NATIVE_REVIEW — translate plain names as concepts, not word-for-word",
-    "primary-care": { "plain": "Médico de cabecera", "formal": "Atención primaria" },
-    "geriatrics": { "plain": "Médico para personas mayores", "formal": "Geriatra" },
-    "cardiology": { "plain": "Médico del corazón", "formal": "Cardiólogo" },
-    "pulmonology": { "plain": "Médico de los pulmones", "formal": "Neumólogo" },
-    "gastroenterology": { "plain": "Médico del estómago y la digestión", "formal": "Gastroenterólogo" },
-    "endocrinology": { "plain": "Médico de la diabetes y las hormonas", "formal": "Endocrinólogo" },
-    "nephrology": { "plain": "Médico de los riñones", "formal": "Nefrólogo" },
-    "urology": { "plain": "Médico de la vejiga y las vías urinarias", "formal": "Urólogo" },
-    "orthopedics": { "plain": "Médico de huesos y articulaciones", "formal": "Ortopedista" },
-    "rheumatology": { "plain": "Médico de la artritis", "formal": "Reumatólogo" },
-    "podiatry": { "plain": "Médico de los pies", "formal": "Podiatra" },
-    "ophthalmology": { "plain": "Médico de los ojos", "formal": "Oftalmólogo" },
-    "otolaryngology": { "plain": "Médico de oídos, nariz y garganta", "formal": "Otorrinolaringólogo" },
-    "dermatology": { "plain": "Médico de la piel", "formal": "Dermatólogo" },
-    "neurology": { "plain": "Médico del cerebro y los nervios", "formal": "Neurólogo" },
-    "psychiatry": { "plain": "Médico de salud mental", "formal": "Psiquiatra" }
+    "primary-care": {
+      "plain": "Médico de cabecera",
+      "formal": "Atención primaria"
+    },
+    "geriatrics": {
+      "plain": "Médico para personas mayores",
+      "formal": "Geriatra"
+    },
+    "cardiology": {
+      "plain": "Médico del corazón",
+      "formal": "Cardiólogo"
+    },
+    "pulmonology": {
+      "plain": "Médico de los pulmones",
+      "formal": "Neumólogo"
+    },
+    "gastroenterology": {
+      "plain": "Médico del estómago y la digestión",
+      "formal": "Gastroenterólogo"
+    },
+    "endocrinology": {
+      "plain": "Médico de la diabetes y las hormonas",
+      "formal": "Endocrinólogo"
+    },
+    "nephrology": {
+      "plain": "Médico de los riñones",
+      "formal": "Nefrólogo"
+    },
+    "urology": {
+      "plain": "Médico de la vejiga y las vías urinarias",
+      "formal": "Urólogo"
+    },
+    "orthopedics": {
+      "plain": "Médico de huesos y articulaciones",
+      "formal": "Ortopedista"
+    },
+    "rheumatology": {
+      "plain": "Médico de la artritis",
+      "formal": "Reumatólogo"
+    },
+    "podiatry": {
+      "plain": "Médico de los pies",
+      "formal": "Podiatra"
+    },
+    "ophthalmology": {
+      "plain": "Médico de los ojos",
+      "formal": "Oftalmólogo"
+    },
+    "otolaryngology": {
+      "plain": "Médico de oídos, nariz y garganta",
+      "formal": "Otorrinolaringólogo"
+    },
+    "dermatology": {
+      "plain": "Médico de la piel",
+      "formal": "Dermatólogo"
+    },
+    "neurology": {
+      "plain": "Médico del cerebro y los nervios",
+      "formal": "Neurólogo"
+    },
+    "psychiatry": {
+      "plain": "Médico de salud mental",
+      "formal": "Psiquiatra"
+    }
   },
   "filters": {
     "title": "¿Hay algo más que le importe?",
@@ -130,6 +178,14 @@
   "footer": {
     "//": "NEEDS_NATIVE_REVIEW",
     "disclaimer": "OkDoc muestra datos públicos de los directorios de seguros. Siempre confirme con el consultorio del médico. OkDoc no da consejos médicos."
+  },
+  "errors": {
+    "notFoundTitle": "No encontramos esa página",
+    "notFoundBody": "Es posible que la página se haya movido. Empecemos su búsqueda de nuevo.",
+    "errorTitle": "Algo salió mal",
+    "errorBody": "Lo sentimos, eso no funcionó. Inténtelo de nuevo.",
+    "retry": "Intentar de nuevo",
+    "goHome": "Empezar de nuevo"
   },
   "languages": {
     "en": "Inglés",
