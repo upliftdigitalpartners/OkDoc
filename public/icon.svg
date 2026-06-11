@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#086275"/>
+  <!-- speech bubble = "one confirmation call" -->
+  <path d="M256 96c-88.4 0-160 62.7-160 140 0 44.2 23.5 83.6 60.2 109.2L144 416l72.9-36.4c12.6 2.9 25.7 4.4 39.1 4.4 88.4 0 160-62.7 160-140S344.4 96 256 96z" fill="#f6f4ef"/>
+  <!-- check mark = verified in directory -->
+  <path d="M180 240l52 52 100-100" fill="none" stroke="#086275" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

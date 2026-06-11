@@ -2,9 +2,17 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { ServiceWorkerRegister } from '@/components/ServiceWorkerRegister';
 import { Link } from '@/i18n/navigation';
 import { routing, rtlLocales } from '@/i18n/routing';
 import '../globals.css';
+
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#086275' },
+    { media: '(prefers-color-scheme: dark)', color: '#10181e' },
+  ],
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -20,6 +28,13 @@ export async function generateMetadata({
   return {
     title: t('appName'),
     description: t('tagline'),
+    icons: {
+      icon: [
+        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/icon-192.png', sizes: '192x192' },
+      ],
+      apple: '/apple-touch-icon.png',
+    },
   };
 }
 
@@ -42,6 +57,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={rtlLocales.has(locale) ? 'rtl' : 'ltr'}>
       <body className="flex min-h-dvh flex-col">
         <NextIntlClientProvider>
+          <ServiceWorkerRegister />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-3 focus:text-lg focus:font-semibold"

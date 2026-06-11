@@ -66,6 +66,19 @@ test('RTL (Arabic): dir is set, axe-clean, no horizontal scroll', async ({
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
+test('PWA: manifest, service worker, and offline page are served', async ({
+  page,
+}) => {
+  const manifest = await page.request.get('/manifest.webmanifest');
+  expect(manifest.ok()).toBe(true);
+  const body = await manifest.json();
+  expect(body.icons?.length).toBeGreaterThanOrEqual(3);
+  expect((await page.request.get('/sw.js')).ok()).toBe(true);
+  const offline = await page.request.get('/offline.html');
+  expect(offline.ok()).toBe(true);
+  expect(await offline.text()).toContain('lang="ar"');
+});
+
 test('200% zoom: results page has no horizontal scroll', async ({ page }) => {
   await page.goto('/en/results?county=kings&plan=H3359_021&specialty=cardiology');
   await page.waitForLoadState('networkidle');
