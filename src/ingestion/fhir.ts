@@ -60,16 +60,41 @@ export class FatalFhirError extends Error {}
 /**
  * Follow Bundle.link[next] until exhausted. Tolerates capitalized relation
  * codes (some payers violate the spec). maxPages is a runaway guard.
+ *
+ * HAPI-style servers (UHC) expire `_getpages` cursors server-side; a slow
+ * patch mid-crawl then yields HTTP 410 "Paging information not found" on the
+ * next link, which would kill a long crawl. Consumers dedupe entries by NPI,
+ * so on cursor expiry we restart the search from page 1 instead of dying —
+ * duplicate yields are harmless, a lost crawl is not.
  */
 export async function* pagedSearch(
   firstUrl: string,
   options: { maxPages?: number; timeoutMs?: number } = {},
 ): AsyncGenerator<FhirBundle> {
   const { maxPages = 5000, timeoutMs } = options;
+  const MAX_RESTARTS = 3;
+  let restarts = 0;
   let url: string | null = firstUrl;
   let pages = 0;
   while (url && pages < maxPages) {
-    const bundle: FhirBundle = await fetchFhir(url, timeoutMs);
+    let bundle: FhirBundle;
+    try {
+      bundle = await fetchFhir(url, timeoutMs);
+    } catch (error) {
+      const cursorExpired =
+        error instanceof FatalFhirError &&
+        /HTTP 410|Paging information not found/i.test(error.message);
+      if (cursorExpired && url !== firstUrl && restarts < MAX_RESTARTS) {
+        restarts++;
+        console.warn(
+          `  paging cursor expired — restarting search from page 1 (${restarts}/${MAX_RESTARTS})`,
+        );
+        url = firstUrl;
+        await sleep(2000);
+        continue;
+      }
+      throw error;
+    }
     pages++;
     yield bundle;
     const next = bundle.link?.find((l) => l.relation.toLowerCase() === 'next');

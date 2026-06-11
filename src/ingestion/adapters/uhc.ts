@@ -96,10 +96,12 @@ export const uhcAdapter: PayerAdapter = {
 };
 
 function geoUrl(networkId: string, zipPrefix: string, code?: string): string {
+  // _count=100 halves page count vs 50 — fewer paging-cursor round-trips
+  // (UHC's cursors expire; see pagedSearch) and fewer requests overall.
   return (
     `${BASE}/PractitionerRole?network=${networkId}` +
     (code ? `&specialty=${code}` : '') +
-    `&location.address-postalcode=${zipPrefix}&_count=50` +
+    `&location.address-postalcode=${zipPrefix}&_count=100` +
     `&_include=PractitionerRole:practitioner&_include=PractitionerRole:location`
   );
 }
