@@ -134,62 +134,75 @@ async function main() {
   }
 
   const db = getDb();
-  const limit = Number(arg('limit') ?? 10_000);
-  let query = db
-    .from('providers')
-    .select('npi, name, gender, specialty_key, specialty_code, address, county, phone, lat')
-    .order('npi')
-    .limit(limit);
-  if (!flag('all')) query = query.is('nppes_enriched_at', null);
-  if (singleNpi) query = query.eq('npi', singleNpi);
-  const { data: pending, error } = await query;
-  if (error) throw new Error(error.message);
-  if (!pending?.length) {
-    console.log('Nothing to enrich.');
-    return;
-  }
-  console.log(`Enriching ${pending.length} providers…`);
+  // Supabase caps a single response at ~1000 rows, so page through batches
+  // until the work is exhausted. Default mode self-advances: enriched rows
+  // drop out of the `nppes_enriched_at is null` filter. --all re-enriches
+  // everything via offset paging. --limit caps total rows processed.
+  const maxTotal = arg('limit') ? Number(arg('limit')) : Infinity;
+  const BATCH = 1000;
 
   const runId = await startSyncRun(db, 'nppes');
   let updated = 0;
   let missing = 0;
+  let offset = 0;
   try {
-    for (const row of pending) {
-      const enrichment = await lookupNpi(row.npi);
-      await sleep(DELAY_MS);
-      const update: Record<string, unknown> = {
-        nppes_enriched_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      };
-      if (enrichment) {
-        // Fill gaps only — the payer directory owns whatever it provided.
-        if (row.name == null && enrichment.name) update.name = enrichment.name;
-        if (row.gender == null && enrichment.gender) update.gender = enrichment.gender;
-        if (row.specialty_key == null && enrichment.specialty_key) {
-          update.specialty_key = enrichment.specialty_key;
-          update.specialty_code = enrichment.specialty_code;
-        }
-        if (row.address == null && enrichment.address) update.address = enrichment.address;
-        if (row.county == null && enrichment.county) update.county = enrichment.county;
-        if (row.phone == null && enrichment.phone) update.phone = enrichment.phone;
-        // Geocode only when the payer didn't give coordinates.
-        const addressForGeo = (row.address ?? enrichment.address) as string | undefined;
-        if (row.lat == null && addressForGeo) {
-          const coords = await geocode(addressForGeo);
-          if (coords) Object.assign(update, coords);
-          await sleep(DELAY_MS);
-        }
-      } else {
-        missing++;
-      }
-      const { error: upErr } = await db
+    for (;;) {
+      if (updated >= maxTotal) break;
+      let query = db
         .from('providers')
-        .update(update)
-        .eq('npi', row.npi);
-      if (upErr) throw new Error(`update ${row.npi}: ${upErr.message}`);
-      updated++;
-      if (updated % 50 === 0) console.log(`  …${updated}/${pending.length}`);
+        .select(
+          'npi, name, gender, specialty_key, specialty_code, address, county, phone, lat',
+        )
+        .order('npi');
+      if (singleNpi) query = query.eq('npi', singleNpi);
+      if (flag('all')) query = query.range(offset, offset + BATCH - 1);
+      else query = query.is('nppes_enriched_at', null).limit(BATCH);
+
+      const { data: batch, error } = await query;
+      if (error) throw new Error(error.message);
+      if (!batch?.length) break;
+
+      for (const row of batch) {
+        if (updated >= maxTotal) break;
+        const enrichment = await lookupNpi(row.npi);
+        await sleep(DELAY_MS);
+        const update: Record<string, unknown> = {
+          nppes_enriched_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+        if (enrichment) {
+          // Fill gaps only — the payer directory owns whatever it provided.
+          if (row.name == null && enrichment.name) update.name = enrichment.name;
+          if (row.gender == null && enrichment.gender) update.gender = enrichment.gender;
+          if (row.specialty_key == null && enrichment.specialty_key) {
+            update.specialty_key = enrichment.specialty_key;
+            update.specialty_code = enrichment.specialty_code;
+          }
+          if (row.address == null && enrichment.address) update.address = enrichment.address;
+          if (row.county == null && enrichment.county) update.county = enrichment.county;
+          if (row.phone == null && enrichment.phone) update.phone = enrichment.phone;
+          // Geocode only when the payer didn't give coordinates.
+          const addressForGeo = (row.address ?? enrichment.address) as string | undefined;
+          if (row.lat == null && addressForGeo) {
+            const coords = await geocode(addressForGeo);
+            if (coords) Object.assign(update, coords);
+            await sleep(DELAY_MS);
+          }
+        } else {
+          missing++;
+        }
+        const { error: upErr } = await db
+          .from('providers')
+          .update(update)
+          .eq('npi', row.npi);
+        if (upErr) throw new Error(`update ${row.npi}: ${upErr.message}`);
+        updated++;
+        if (updated % 50 === 0) console.log(`  …${updated} enriched`);
+      }
+      offset += batch.length;
+      if (singleNpi) break;
     }
+    if (updated === 0) console.log('Nothing to enrich.');
     await finishSyncRun(db, runId, {
       status: 'succeeded',
       rowsUpserted: updated,
