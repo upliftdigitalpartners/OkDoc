@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ServiceWorkerRegister } from '@/components/ServiceWorkerRegister';
 import { Link } from '@/i18n/navigation';
 import { routing, rtlLocales } from '@/i18n/routing';
+import { getSiteUrl } from '@/lib/site';
 import '../globals.css';
 
 export const viewport = {
@@ -25,9 +26,35 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'common' });
+  const site = getSiteUrl();
+  const title = t('appName');
+  const description = t('tagline');
   return {
-    title: t('appName'),
-    description: t('tagline'),
+    metadataBase: new URL(site),
+    title: { default: title, template: `%s · ${title}` },
+    description,
+    applicationName: title,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: Object.fromEntries(
+        routing.locales.map((l) => [l, `/${l}`]),
+      ),
+    },
+    openGraph: {
+      type: 'website',
+      siteName: title,
+      title,
+      description,
+      locale,
+      url: `/${locale}`,
+      images: [{ url: '/og.png', width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og.png'],
+    },
     icons: {
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
