@@ -59,11 +59,14 @@ export async function chunkedUpsert(
   rows: Record<string, unknown>[],
   onConflict: string,
   chunkSize = 500,
+  options: { ignoreDuplicates?: boolean } = {},
 ): Promise<number> {
   let upserted = 0;
   for (let i = 0; i < rows.length; i += chunkSize) {
     const chunk = rows.slice(i, i + chunkSize);
-    const { error } = await db.from(table).upsert(chunk, { onConflict });
+    const { error } = await db
+      .from(table)
+      .upsert(chunk, { onConflict, ...options });
     if (error) {
       throw new Error(
         `${table} upsert failed at rows ${i}–${i + chunk.length}: ${error.message}`,

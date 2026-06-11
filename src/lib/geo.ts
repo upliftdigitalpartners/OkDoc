@@ -39,6 +39,10 @@ export function zipToCounty(zip: string): County | null {
   return zipPrefixToCounty[zip.slice(0, 3)] ?? null;
 }
 
+export function isCoveredZip(zip: string): boolean {
+  return zipToCounty(zip) !== null;
+}
+
 export function haversineMiles(
   a: { lat: number; lng: number },
   b: { lat: number; lng: number },

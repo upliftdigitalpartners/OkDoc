@@ -1,0 +1,42 @@
+{
+  "//": "Curated mapping: CMS ContractPlanID (plans table / wizard plan param) → payer FHIR network Organization ids. Payer InsurancePlan→network link data is coarse (PPO plans list every PPO network plus dental/vision/Rx), so the medical network is picked by hand. Discover candidates with: npm run sync:payer -- --payer=humana --discover=H3533-027-000-2026 (or a name query). Verified live 2026-06-11.",
+  "humana": {
+    "payer": "Humana",
+    "plans": [
+      {
+        "planId": "H3533_027",
+        "planName": "Humana Gold Plus Giveback H3533-027 (HMO)",
+        "networkIds": ["a425eb0660909f7b33f904391bc8d30ba815ed714436aa8d5cc29e0e2b2eb774"],
+        "note": "Gold Plus HMO/SNP Downstate — regional network, fast sync (~25k roles)"
+      },
+      {
+        "planId": "H3533_033",
+        "planName": "Humana Gold Plus H3533-033 (HMO)",
+        "networkIds": ["a425eb0660909f7b33f904391bc8d30ba815ed714436aa8d5cc29e0e2b2eb774"],
+        "note": "Same Downstate network as H3533_027"
+      },
+      {
+        "planId": "H3533_035",
+        "planName": "Humana Gold Plus H3533-035 (HMO)",
+        "networkIds": ["a425eb0660909f7b33f904391bc8d30ba815ed714436aa8d5cc29e0e2b2eb774"],
+        "note": "Same Downstate network as H3533_027"
+      },
+      {
+        "planId": "H5970_028",
+        "planName": "HumanaChoice H5970-028 (PPO)",
+        "networkIds": ["f8d3bbe174ecae019d3d0f1c9ba7b9653e31f49e30b2f66795e77c119b51ba14"],
+        "note": "Medicare PPO — NATIONAL network (~19k roles per big specialty); full sync is a 1–2h crawl. Run overnight or with --plan filters."
+      },
+      {
+        "planId": "H5970_016",
+        "planName": "Humana USAA Honor Giveback (PPO)",
+        "networkIds": ["3261c65d0bd30492b7ea6809a8890822dc97667b645d5e990ee3489457a6e323"],
+        "note": "Humana USAA Honor PPO network"
+      }
+    ]
+  },
+  "uhc": {
+    "payer": "UnitedHealthcare",
+    "plans": []
+  }
+}

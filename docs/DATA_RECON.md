@@ -45,7 +45,26 @@ Local copies from recon: `/tmp/cy2026-landscape.zip`, `/tmp/CY2026_Landscape_202
 - Paging: standard `Bundle.link[next]` (HAPI `_getpages`), verified.
 - Gotchas: `Bundle.total` caps at 10,000 (no true counts); duplicate/noisy network Organization refs (one AARP plan had 3 network refs — one empty, one valid, one pointing to a Michigan network) — probe each ref; `PractitionerRole.specialty` sparse on some roles; geography lives on Location only.
 
-### Humana — RECOMMENDED #2 (4/5)
+### Humana — RECOMMENDED #2 (4/5) — implementation findings 2026-06-11
+
+Verified during adapter build (better than the original recon suggested):
+
+- **`InsurancePlan.identifier` embeds the CMS contract**: `H3533-027-000-2026`
+  (contract-PBP-segment-year), and `alias[0]` is the exact landscape plan name.
+  `InsurancePlan?identifier=H3533-027-000-2026` works → plan↔network mapping
+  is discoverable, no name heuristics needed (`sync:payer --discover=…`).
+- **`newpatients` Plan-Net extension IS present** on PractitionerRole
+  (`acceptingPatients` code `newpt`) → real accepting-new-patients data.
+- **Location carries `position` (lat/lng) and `district` (county name)** →
+  no geocoding needed for Humana entries.
+- Plan→network links are coarse: every PPO plan lists ~12 networks incl.
+  dental/vision/Rx — the medical network is hand-picked in
+  `src/ingestion/adapters/plan-network-map.json`.
+- "Gold Plus HMO/SNP Downstate" network is regional (1,525 cardiology roles,
+  919 in our counties). "Medicare PPO" is national (~19k cardiology roles) —
+  a full sync of that network is a 1–2h polite crawl.
+- Chained geo params (`location.address-state=NY`) → **504 Gateway Timeout**
+  (confirmed) — geographic filtering must stay client-side.
 
 - **Base:** `https://fhir.humana.com/api` — no auth, FHIR 4.0.1, Plan-Net conformant, true totals.
 - **Verified:** `PractitionerRole?network={id}&specialty=207R00000X&_include=...` → 200 with Practitioner + Location included; NUCC-coded specialty **on the role**; network displays like "Medicare PPO27". `InsurancePlan?name=medicare` is contains-style (146 hits); "HumanaChoice" MA PPO plans carry network refs + `coverageArea`.
