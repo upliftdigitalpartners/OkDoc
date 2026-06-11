@@ -55,13 +55,9 @@ export async function generateMetadata({
       description,
       images: ['/og.png'],
     },
-    icons: {
-      icon: [
-        { url: '/icon.svg', type: 'image/svg+xml' },
-        { url: '/icon-192.png', sizes: '192x192' },
-      ],
-      apple: '/apple-touch-icon.png',
-    },
+    // Icons come from file conventions: app/favicon.ico, app/icon.svg,
+    // app/apple-icon.png (auto-linked by Next). PWA icons live in the
+    // manifest.
   };
 }
 
