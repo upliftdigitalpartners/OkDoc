@@ -6,9 +6,11 @@ import {
   pagedSearch,
   resourcesOfType,
 } from '../fhir';
+import { acceptingOf, languagesOf, npiOf, phoneOf, refId } from './fhir-helpers';
 import type {
   DirectoryEntry,
   DiscoveredPlan,
+  FetchOptions,
   PayerAdapter,
 } from './types';
 
@@ -32,33 +34,6 @@ const COUNTY_DISTRICTS: Record<string, County> = {
   westchester: 'westchester',
 };
 
-const LANGUAGE_NAMES: Record<string, string> = {
-  english: 'en',
-  spanish: 'es',
-  bengali: 'bn',
-  chinese: 'zh',
-  mandarin: 'zh',
-  cantonese: 'zh',
-  hindi: 'hi',
-  urdu: 'ur',
-  arabic: 'ar',
-  french: 'fr',
-  russian: 'ru',
-  korean: 'ko',
-  polish: 'pl',
-  'haitian creole': 'ht',
-  creole: 'ht',
-};
-
-function npiOf(practitioner: FhirResource | undefined): string | null {
-  const id = (practitioner?.identifier ?? []).find(
-    (i: FhirResource) => i.system === 'http://hl7.org/fhir/sid/us-npi',
-  );
-  return typeof id?.value === 'string' && /^\d{10}$/.test(id.value)
-    ? id.value
-    : null;
-}
-
 function nameOf(practitioner: FhirResource | undefined): string | null {
   const n = practitioner?.name?.[0];
   if (!n) return null;
@@ -72,31 +47,6 @@ function nameOf(practitioner: FhirResource | undefined): string | null {
   }
   const given = Array.isArray(n.given) ? n.given.join(' ') : '';
   return [given, n.family].filter(Boolean).join(' ') || null;
-}
-
-function languagesOf(practitioner: FhirResource | undefined): string[] {
-  const out = new Set<string>(['en']);
-  for (const comm of practitioner?.communication ?? []) {
-    const display = comm?.coding?.[0]?.display;
-    if (typeof display === 'string') {
-      const code = LANGUAGE_NAMES[display.trim().toLowerCase()];
-      if (code) out.add(code);
-    }
-  }
-  return [...out];
-}
-
-function acceptingOf(role: FhirResource): boolean | null {
-  const ext = (role.extension ?? []).find((x: FhirResource) =>
-    String(x.url).endsWith('/newpatients'),
-  );
-  const code = ext?.extension?.find(
-    (x: FhirResource) => x.url === 'acceptingPatients',
-  )?.valueCodeableConcept?.coding?.[0]?.code;
-  if (code === 'newpt') return true;
-  if (code === 'nopt') return false;
-  if (typeof code === 'string') return code.startsWith('existpt') ? false : null;
-  return null;
 }
 
 export const humanaAdapter: PayerAdapter = {
@@ -114,7 +64,7 @@ export const humanaAdapter: PayerAdapter = {
         const networks: { id: string; name: string }[] = [];
         const seen = new Set<string>();
         for (const n of plan.network ?? []) {
-          const id = String(n.reference ?? '').split('/').pop() ?? '';
+          const id = refId(n.reference);
           if (!id || seen.has(id)) continue;
           seen.add(id);
           networks.push({ id, name: String(n.display ?? '?') });
@@ -131,12 +81,14 @@ export const humanaAdapter: PayerAdapter = {
 
   async *fetchNetworkEntries(
     networkId: string,
-    taxonomyCodes?: string[],
+    options: FetchOptions = {},
   ): AsyncGenerator<DirectoryEntry> {
     // Chained geo search 504s, so: query per specialty (keeps responses
     // bounded), pull practitioner+location via _include, filter to our
-    // counties client-side.
-    const codes = taxonomyCodes ?? specialties.flatMap((s) => s.taxonomyCodes);
+    // counties client-side. (Humana networks all carry searchable
+    // specialty, so the specialtySearchable flag doesn't apply here.)
+    const codes =
+      options.taxonomyCodes ?? specialties.flatMap((s) => s.taxonomyCodes);
     for (const code of codes) {
       const first =
         `${BASE}/PractitionerRole?network=${networkId}&specialty=${code}` +
@@ -158,16 +110,14 @@ export const humanaAdapter: PayerAdapter = {
 
         for (const role of resourcesOfType(bundle, 'PractitionerRole')) {
           const practitioner = practitioners.get(
-            String(role.practitioner?.reference ?? '').split('/').pop() ?? '',
+            refId(role.practitioner?.reference),
           );
           const npi = npiOf(practitioner);
           if (!npi) continue;
 
           // A role may list several locations; emit the first covered one.
           for (const locRef of role.location ?? []) {
-            const loc = locations.get(
-              String(locRef.reference ?? '').split('/').pop() ?? '',
-            );
+            const loc = locations.get(refId(locRef.reference));
             const addr = loc?.address;
             if (!addr || addr.state !== 'NY') continue;
             const zip = String(addr.postalCode ?? '').slice(0, 5);
@@ -177,14 +127,13 @@ export const humanaAdapter: PayerAdapter = {
             if (!county && !isCoveredZip(zip)) continue;
 
             const line = Array.isArray(addr.line) ? addr.line.join(', ') : '';
-            const phone = (loc.telecom ?? []).find(
-              (t: FhirResource) => t.system === 'phone',
-            )?.value;
 
             yield {
               npi,
               name: nameOf(practitioner),
-              specialtyCode: role.specialty?.[0]?.coding?.[0]?.code ?? code,
+              // Searched code is what the server matched; role.specialty[] is
+              // multi-valued/unordered, so reading [0] can mislabel. Trust it.
+              specialtyCode: code,
               languages: languagesOf(practitioner),
               address: [line, `${addr.city}, NY ${zip}`]
                 .filter(Boolean)
@@ -193,8 +142,9 @@ export const humanaAdapter: PayerAdapter = {
               zip: zip || null,
               lat: loc.position?.latitude ?? null,
               lng: loc.position?.longitude ?? null,
-              phone: typeof phone === 'string' ? phone : null,
+              phone: phoneOf(loc.telecom),
               acceptingNewPatients: acceptingOf(role),
+              gender: null, // Humana doesn't expose it — NPPES fills this
             };
             break;
           }

@@ -11,6 +11,7 @@
  * see notes in plan-network-map.json for expected runtimes.
  */
 import { humanaAdapter } from '../src/ingestion/adapters/humana';
+import { uhcAdapter } from '../src/ingestion/adapters/uhc';
 import type {
   DirectoryEntry,
   PayerAdapter,
@@ -22,6 +23,7 @@ import { chunkedUpsert, finishSyncRun, getDb, startSyncRun } from './lib/db';
 
 const ADAPTERS: Record<string, PayerAdapter> = {
   humana: humanaAdapter,
+  uhc: uhcAdapter,
 };
 
 function arg(name: string): string | undefined {
@@ -83,7 +85,10 @@ async function main() {
     console.log(`\n▶ ${mapping.planId} ${mapping.planName}`);
     for (const networkId of mapping.networkIds) {
       let count = 0;
-      for await (const entry of adapter.fetchNetworkEntries(networkId, taxonomyFilter)) {
+      for await (const entry of adapter.fetchNetworkEntries(networkId, {
+        taxonomyCodes: taxonomyFilter,
+        specialtySearchable: mapping.specialtySearchable,
+      })) {
         count++;
         upsertEntry(providers, entry);
         const key = `${entry.npi}|${mapping.planId}`;
@@ -170,6 +175,7 @@ function upsertEntry(
       name: entry.name,
       specialty_key: specialtyKey,
       specialty_code: entry.specialtyCode,
+      gender: entry.gender,
       languages: entry.languages,
       address: entry.address,
       county: entry.county,
@@ -180,6 +186,7 @@ function upsertEntry(
     return;
   }
   // Backfill blanks; merge languages.
+  existing.gender ??= entry.gender;
   existing.specialty_key ??= specialtyKey;
   existing.specialty_code ??= entry.specialtyCode;
   existing.address ??= entry.address;

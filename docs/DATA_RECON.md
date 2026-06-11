@@ -36,7 +36,32 @@ Local copies from recon: `/tmp/cy2026-landscape.zip`, `/tmp/CY2026_Landscape_202
 
 ## 2. Payer Plan-Net FHIR endpoints (→ `provider_plan`)
 
-### UnitedHealthcare — RECOMMENDED #1 (4/5)
+### UnitedHealthcare — RECOMMENDED #1 (4/5) — implementation findings 2026-06-11
+
+Verified during adapter build:
+
+- **`InsurancePlan.identifier` carries the official CMS contract**: system
+  `urn:cms:medicare-advantage-contract`, value `H3418001000`
+  (contract+PBP+segment) → direct join to landscape ContractPlanIDs. Name
+  search is exact-prefix-only, so discovery enumerates all ~1.4k plans
+  (12 pages) and filters client-side.
+- **Zip prefix chained search works**: `location.address-postalcode=104`
+  string-matches starts-with → whole-borough queries. Crawl strategy:
+  network × specialty × 16 zip prefixes (e.g. 692 Bronx cardiology roles).
+- **practitioner.gender and communication languages present** (BCP-47
+  displays — note "Castilian" = Spanish); newpatients extension present;
+  Location has lat/lng; phone on PractitionerRole.telecom (format
+  "1-212-7819223").
+- **Roles carry 700+ network-reference extensions** → very fat payloads;
+  use `_count=50`, not 200.
+- **Network refs per plan are noisy**: each InsurancePlan lists 2–5 network
+  Organizations all named like the plan; probing showed several are EMPTY
+  (total=0). plan-network-map.json keeps only probed-populated refs.
+  Dual Complete (D-SNP) plans share networks.
+- **H2292_002** appears in the CY2026 landscape for our counties but has no
+  InsurancePlan in UHC's FHIR at all — unmappable today.
+
+### Original recon (2026-06-10)
 
 - **Base:** `https://flex.optum.com/fhirpublic/R4` — no auth, FHIR 4.0.1, full Plan-Net resource set.
   (Dead candidates verified: `public.fhir.flex.optum.com`, `apimarketplace.uhc.com` → 404. uhc.com docs pages 403 non-browser UAs.)

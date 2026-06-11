@@ -35,6 +35,8 @@ const zipPrefixToCounty: Record<string, County> = {
   '116': 'queens',
 };
 
+export const coveredZipPrefixes = Object.keys(zipPrefixToCounty);
+
 export function zipToCounty(zip: string): County | null {
   return zipPrefixToCounty[zip.slice(0, 3)] ?? null;
 }

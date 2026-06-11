@@ -13,6 +13,7 @@ export interface DirectoryEntry {
   lng: number | null;
   phone: string | null;
   acceptingNewPatients: boolean | null;
+  gender: 'f' | 'm' | null;
 }
 
 export interface DiscoveredNetwork {
@@ -33,14 +34,24 @@ export interface PayerAdapter {
   /** Search the payer's InsurancePlan resources — powers `--discover`. */
   discoverPlans(query: string): Promise<DiscoveredPlan[]>;
   /**
-   * Stream NYC-metro directory entries for one network. Implementations
-   * filter to our coverage area and our specialty registry (or the given
-   * subset of NUCC codes — used by --specialty for scoped/test runs).
+   * Stream NYC-metro directory entries for one network, filtered to our
+   * coverage area.
    */
   fetchNetworkEntries(
     networkId: string,
-    taxonomyCodes?: string[],
+    options?: FetchOptions,
   ): AsyncGenerator<DirectoryEntry>;
+}
+
+export interface FetchOptions {
+  /** Restrict the crawl to these NUCC codes (used by --specialty / tests). */
+  taxonomyCodes?: string[];
+  /**
+   * False when the network's roles carry no searchable specialty (some UHC
+   * D-SNP networks) — the adapter then crawls by geography only and emits
+   * specialtyCode=null for NPPES to backfill. Default true.
+   */
+  specialtySearchable?: boolean;
 }
 
 /** Curated entry in plan-network-map.json. */
@@ -48,6 +59,8 @@ export interface PlanNetworkMapping {
   planId: string; // CMS ContractPlanID, e.g. H3533_027 — joins to plans table
   planName: string; // for humans reading the map
   networkIds: string[];
+  /** Set false for networks whose roles lack searchable specialty codes. */
+  specialtySearchable?: boolean;
   note?: string;
 }
 

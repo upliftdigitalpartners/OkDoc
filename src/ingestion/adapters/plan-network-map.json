@@ -36,7 +36,65 @@
     ]
   },
   "uhc": {
+    "//": "Network refs probed 2026-06-11: each plan lists 2-5 refs, several are empty (total=0) — only populated, plan-specific refs are kept. AARP MA networks support specialty search (verified: 692 Bronx cardiologists). Dual Complete D-SNP networks do NOT — their roles carry no specialty at all, so those plans set specialtySearchable=false and are crawled by zip with specialty backfilled from NPPES. H2292_002 (in the landscape for our counties) has NO InsurancePlan in UHC's FHIR — flagged, not mapped.",
     "payer": "UnitedHealthcare",
-    "plans": []
+    "plans": [
+      {
+        "planId": "H3418_001",
+        "planName": "AARP Medicare Advantage from UHC NY-0012 (PPO)",
+        "networkIds": ["DbTrSUUGC2JsKmyoyAb6XPvh1iFj5pLWAv4ByR3Gkg6"]
+      },
+      {
+        "planId": "H3418_002",
+        "planName": "AARP Medicare Advantage from UHC NY-0013 (PPO)",
+        "networkIds": ["Tl5L6SefeXjh9btW0vwDY9Xzpsn1nju37aXehFY8NcB"]
+      },
+      {
+        "planId": "H3379_001",
+        "planName": "AARP Medicare Advantage from UHC NY-0005 (HMO-POS)",
+        "networkIds": ["97FX38RdVVx6lNU1svQYY7ZyASomKcP3N4eRcDArhvw"]
+      },
+      {
+        "planId": "H3379_043",
+        "planName": "AARP Medicare Advantage from UHC NY-0009 (HMO-POS)",
+        "networkIds": ["fSQZnPs2HAEtr47YLYC6ZsjcALwJiqhtoPT7yyj8zcR"]
+      },
+      {
+        "planId": "H3379_059",
+        "planName": "AARP Medicare Advantage from UHC NY-34 (HMO-POS)",
+        "networkIds": ["E5G9e39tiVAzyQEWNNJP4vuLAQTKZ0TmuFcXwQSUTfQ"]
+      },
+      {
+        "planId": "H3379_060",
+        "planName": "AARP Medicare Advantage Patriot No Rx NY-MA3 (HMO-POS)",
+        "networkIds": ["WFNfKzjiLKOXutUW0vrwPb0JlszJKGZRepTKWn3u6u"]
+      },
+      {
+        "planId": "H3387_013",
+        "planName": "UHC Dual Complete NY-Y001 (HMO-POS D-SNP)",
+        "networkIds": ["0CDSyh4nFKauYCH9BXKlQejuBcCinYMLUgzsnM7XOzW"],
+        "specialtySearchable": false,
+        "note": "Shared Dual Complete network (plan-specific ref was empty); no searchable specialty — zip crawl + NPPES backfill"
+      },
+      {
+        "planId": "H3387_014",
+        "planName": "UHC Dual Complete NY-S002 (HMO-POS D-SNP)",
+        "networkIds": ["cic1UfmPti8idnAX5SfeuzaOkJZ87cy6zqYAgJBgYJF"],
+        "specialtySearchable": false
+      },
+      {
+        "planId": "H3387_015",
+        "planName": "UHC Dual Complete NY-Q001 (HMO-POS D-SNP)",
+        "networkIds": ["cic1UfmPti8idnAX5SfeuzaOkJZ87cy6zqYAgJBgYJF"],
+        "specialtySearchable": false,
+        "note": "Shares network with H3387_014"
+      },
+      {
+        "planId": "H2001_063",
+        "planName": "UHC Dual Complete NY-S001 (PPO D-SNP)",
+        "networkIds": ["JsCcwrKvfFDE7MitHhyoflGyxBPOqokix6POGhAY1ca"],
+        "specialtySearchable": false
+      }
+    ]
   }
 }
