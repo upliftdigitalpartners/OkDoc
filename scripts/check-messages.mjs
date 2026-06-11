@@ -6,6 +6,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { parse, TYPE } from '@formatjs/icu-messageformat-parser';
 
 const dir = join(process.cwd(), 'messages');
 const en = JSON.parse(readFileSync(join(dir, 'en.json'), 'utf8'));
@@ -24,10 +25,27 @@ function get(obj, path) {
   return path.split('.').reduce((o, k) => (o ? o[k] : undefined), obj);
 }
 
-// Placeholder names referenced in an ICU string: {miles}, {count, plural ...}
+// Argument names referenced in an ICU message, via a real ICU parse —
+// distinguishes {miles} (argument) from plural-branch text like "one {mile}".
 function placeholders(value) {
   const names = new Set();
-  for (const match of String(value).matchAll(/\{(\w+)/g)) names.add(match[1]);
+  const walk = (elements) => {
+    for (const el of elements) {
+      if (el.type === TYPE.argument || el.type === TYPE.number || el.type === TYPE.date) {
+        names.add(el.value);
+      } else if (el.type === TYPE.plural || el.type === TYPE.select) {
+        names.add(el.value);
+        for (const option of Object.values(el.options)) walk(option.value);
+      } else if (el.type === TYPE.tag) {
+        walk(el.children);
+      }
+    }
+  };
+  try {
+    walk(parse(String(value)));
+  } catch (error) {
+    throw new Error(`ICU parse error: ${error.message}`);
+  }
   return names;
 }
 
@@ -56,10 +74,14 @@ for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
     const enValue = get(en, path);
     const value = get(catalog, path);
     if (typeof enValue !== 'string' || typeof value !== 'string') continue;
-    const expected = placeholders(enValue);
-    const actual = placeholders(value);
-    for (const name of expected) {
-      if (!actual.has(name)) badPlaceholders.push(`${path}: missing {${name}}`);
+    try {
+      const expected = placeholders(enValue);
+      const actual = placeholders(value);
+      for (const name of expected) {
+        if (!actual.has(name)) badPlaceholders.push(`${path}: missing {${name}}`);
+      }
+    } catch (error) {
+      badPlaceholders.push(`${path}: ${error.message}`);
     }
   }
 
